@@ -38,6 +38,7 @@
           eval-nodes = mkTest ./tests/eval/nodes.nix;
           eval-sets = mkTest ./tests/eval/sets.nix;
           eval-maps = mkTest ./tests/eval/maps.nix;
+          eval-stateful = mkTest ./tests/eval/stateful.nix;
         });
     };
 }
