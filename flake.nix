@@ -41,6 +41,7 @@
           eval-stateful = mkTest ./tests/eval/stateful.nix;
           eval-ct = mkTest ./tests/eval/ct.nix;
           eval-objects-misc = mkTest ./tests/eval/objects-misc.nix;
+          eval-tables = mkTest ./tests/eval/tables.nix;
         });
     };
 }
