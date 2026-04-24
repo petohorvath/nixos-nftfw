@@ -3,7 +3,7 @@
 { config, ... }:
 
 let
-  common = (import ./_common.nix { inherit lib; }).commonFields;
+  inherit (import ./_common.nix { inherit lib; }) commonFields;
 
   helperSubmodule = { name, ... }: {
     options = {
@@ -21,7 +21,7 @@ let
         default = null;
         description = "L3 protocol the helper applies to (e.g. \"ip\", \"ip6\").";
       };
-    } // common;
+    } // commonFields;
   };
 
   timeoutSubmodule = { name, ... }: {
@@ -41,7 +41,7 @@ let
         default = { };
         description = "Per-state timeout values in seconds (e.g. { established = 86400; close_wait = 60; }).";
       };
-    } // common;
+    } // commonFields;
   };
 
   expectationSubmodule = { name, ... }: {
@@ -71,7 +71,7 @@ let
         default = null;
         description = "Maximum number of concurrent expectations.";
       };
-    } // common;
+    } // commonFields;
   };
 in {
   options.networking.nftfw.objects.ct.helpers = lib.mkOption {

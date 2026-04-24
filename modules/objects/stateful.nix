@@ -3,7 +3,7 @@
 { config, ... }:
 
 let
-  common = (import ./_common.nix { inherit lib; }).commonFields;
+  inherit (import ./_common.nix { inherit lib; }) commonFields;
 
   counterSubmodule = { name, ... }: {
     options = {
@@ -17,7 +17,7 @@ let
         default = null;
         description = "Initial byte count.";
       };
-    } // common;
+    } // commonFields;
   };
 
   quotaSubmodule = { name, ... }: {
@@ -36,7 +36,7 @@ let
         default = false;
         description = "Invert — match when the quota is exceeded.";
       };
-    } // common;
+    } // commonFields;
   };
 
   limitSubmodule = { name, ... }: {
@@ -69,7 +69,7 @@ let
         default = false;
         description = "Invert — match when the limit is exceeded.";
       };
-    } // common;
+    } // commonFields;
   };
 in {
   options.networking.nftfw.objects.counters = lib.mkOption {

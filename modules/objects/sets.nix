@@ -3,7 +3,7 @@
 { config, ... }:
 
 let
-  common = (import ./_common.nix { inherit lib; }).commonFields;
+  inherit (import ./_common.nix { inherit lib; }) commonFields;
 
   setSubmodule = { name, ... }: {
     options = {
@@ -35,7 +35,7 @@ let
         default = null;
         description = "Maximum element count hint.";
       };
-    } // common;
+    } // commonFields;
   };
 in {
   options.networking.nftfw.objects.sets = lib.mkOption {
