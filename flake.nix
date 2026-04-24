@@ -25,6 +25,14 @@
       nixosModules.nftfw = self.nixosModules.default;
 
       formatter = forEach (s: nixpkgs.legacyPackages.${s}.nixfmt-rfc-style);
-      checks = forEach (s: { });   # filled in later tasks
+      checks = forEach (s:
+        let
+          pkgs = nixpkgs.legacyPackages.${s};
+          libnet = nix-libnet.lib;
+          nftlib = nix-nftypes.lib;
+          mkTest = path: import path { inherit pkgs libnet nftlib; };
+        in {
+          eval-enable = mkTest ./tests/eval/enable.nix;
+        });
     };
 }
