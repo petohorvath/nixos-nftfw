@@ -3,21 +3,7 @@
 { config, ... }:
 
 let
-  commonFields = {
-    tables = lib.mkOption {
-      type = lib.types.nullOr (lib.types.listOf lib.types.str);
-      default = null;
-      description = ''
-        Emission scope. null = auto-emit to every declared table whose
-        family is compatible; list = explicit restriction to named tables.
-      '';
-    };
-    comment = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
-      default = null;
-      description = "Free-form comment carried into the generated ruleset.";
-    };
-  };
+  common = (import ./_common.nix { inherit lib; }).commonFields;
 
   counterSubmodule = { name, ... }: {
     options = {
@@ -31,7 +17,7 @@ let
         default = null;
         description = "Initial byte count.";
       };
-    } // commonFields;
+    } // common;
   };
 
   quotaSubmodule = { name, ... }: {
@@ -50,7 +36,7 @@ let
         default = false;
         description = "Invert — match when the quota is exceeded.";
       };
-    } // commonFields;
+    } // common;
   };
 
   limitSubmodule = { name, ... }: {
@@ -83,7 +69,7 @@ let
         default = false;
         description = "Invert — match when the limit is exceeded.";
       };
-    } // commonFields;
+    } // common;
   };
 in {
   options.networking.nftfw.objects.counters = lib.mkOption {

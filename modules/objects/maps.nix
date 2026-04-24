@@ -3,6 +3,8 @@
 { config, ... }:
 
 let
+  common = (import ./_common.nix { inherit lib; }).commonFields;
+
   mapSubmodule = { name, ... }: {
     options = {
       type = lib.mkOption {
@@ -33,20 +35,7 @@ let
         default = null;
         description = "Maximum entry count hint.";
       };
-      tables = lib.mkOption {
-        type = lib.types.nullOr (lib.types.listOf lib.types.str);
-        default = null;
-        description = ''
-          Emission scope. null = auto-emit to every declared table whose
-          family is compatible; list = explicit restriction to named tables.
-        '';
-      };
-      comment = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        default = null;
-        description = "Free-form comment carried into the generated ruleset.";
-      };
-    };
+    } // common;
   };
 in {
   options.networking.nftfw.objects.maps = lib.mkOption {
