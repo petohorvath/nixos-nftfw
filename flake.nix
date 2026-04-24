@@ -34,6 +34,7 @@
         in {
           eval-enable = mkTest ./tests/eval/enable.nix;
           eval-namespaces = mkTest ./tests/eval/namespaces.nix;
+          eval-zones = mkTest ./tests/eval/zones.nix;
         });
     };
 }

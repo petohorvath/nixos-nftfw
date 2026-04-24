@@ -6,7 +6,8 @@ let
   nftfw = cfg.networking.nftfw;
 in
   h.runTests {
-    testZonesEmpty       = { expr = nftfw.zones; expected = { }; };
+    testZonesHasLocal    = { expr = nftfw.zones ? local; expected = true; };
+    testZonesHasAny      = { expr = nftfw.zones ? any;   expected = true; };
     testNodesEmpty       = { expr = nftfw.nodes; expected = { }; };
     testRulesFilterEmpty = { expr = nftfw.rules.filter; expected = { }; };
     testRulesIcmpEmpty   = { expr = nftfw.rules.icmp; expected = { }; };
