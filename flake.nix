@@ -33,6 +33,7 @@
           mkTest = path: import path { inherit pkgs libnet nftlib; };
         in {
           eval-enable = mkTest ./tests/eval/enable.nix;
+          eval-namespaces = mkTest ./tests/eval/namespaces.nix;
         });
     };
 }
