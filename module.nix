@@ -28,5 +28,8 @@
     (import ./modules/objects/synproxies.nix { inherit lib; })
     (import ./modules/objects/tunnels.nix { inherit lib; })
     (import ./modules/objects/ruleset.nix { inherit lib; })
+
+    # Pipeline
+    (import ./modules/pipeline { inherit lib nftlib; })
   ];
 }

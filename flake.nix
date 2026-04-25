@@ -47,6 +47,8 @@
           eval-rules-icmp = mkTest ./tests/eval/rules-icmp.nix;
           eval-rules-mangle = mkTest ./tests/eval/rules-mangle.nix;
           eval-rules-nat = mkTest ./tests/eval/rules-nat.nix;
+          assertion-missing-zone = mkTest ./tests/assertions/missing-zone.nix;
+          assertion-cyclic-parent = mkTest ./tests/assertions/cyclic-parent.nix;
         });
     };
 }
