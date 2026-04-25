@@ -1,6 +1,6 @@
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
   nodeSubmodule = { name, ... }: {
@@ -10,12 +10,12 @@ let
         description = "Parent zone (required). The node materialises as a synthetic child zone at /32 or /128.";
       };
       address.ipv4 = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+        type = lib.types.nullOr libnet.types.ipv4;
         default = null;
         description = "Single IPv4 address for this node.";
       };
       address.ipv6 = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+        type = lib.types.nullOr libnet.types.ipv6;
         default = null;
         description = "Single IPv6 address for this node.";
       };

@@ -53,6 +53,7 @@
           assertion-cyclic-parent = mkTest ./tests/assertions/cyclic-parent.nix;
           assertion-zone-bad-ipv4 = mkTest ./tests/assertions/zone-bad-ipv4.nix;
           assertion-zone-bad-ipv6 = mkTest ./tests/assertions/zone-bad-ipv6.nix;
+          assertion-node-bad-address = mkTest ./tests/assertions/node-bad-address.nix;
           ir-zones-basic = mkTest ./tests/ir/zones-basic.nix;
           ir-table-lazy-main = mkTest ./tests/ir/table-lazy-main.nix;
           ir-rule-resolution = mkTest ./tests/ir/rule-resolution.nix;
