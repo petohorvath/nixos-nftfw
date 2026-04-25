@@ -43,6 +43,7 @@
           eval-objects-misc = mkTest ./tests/eval/objects-misc.nix;
           eval-tables = mkTest ./tests/eval/tables.nix;
           eval-chains = mkTest ./tests/eval/chains.nix;
+          eval-rules-filter = mkTest ./tests/eval/rules-filter.nix;
         });
     };
 }
