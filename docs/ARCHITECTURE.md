@@ -1,6 +1,6 @@
 # nixos-nftfw Architecture
 
-**Spec:** `docs/superpowers/specs/2026-04-24-nixos-nftfw-design.md` — read
+**Spec:** `docs/specs/2026-04-24-nixos-nftfw-design.md` — read
 that for full detail. This document is a navigational overview.
 
 ---
@@ -356,7 +356,7 @@ tests/
   eval/, ir/, render/, assertions/, integration/, vm/
 docs/
   ARCHITECTURE.md                  # this file
-  superpowers/specs/
+  specs/
     2026-04-24-nixos-nftfw-design.md  # full design spec
   plans/
     2026-04-24-nixos-nftfw.md         # implementation plan

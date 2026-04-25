@@ -28,7 +28,7 @@ and tested:
 | Document | Path |
 |----------|------|
 | Architecture overview | `docs/ARCHITECTURE.md` |
-| Full design spec | `docs/superpowers/specs/2026-04-24-nixos-nftfw-design.md` |
+| Full design spec | `docs/specs/2026-04-24-nixos-nftfw-design.md` |
 | Implementation plan | `docs/plans/2026-04-24-nixos-nftfw.md` |
 
 ## Usage

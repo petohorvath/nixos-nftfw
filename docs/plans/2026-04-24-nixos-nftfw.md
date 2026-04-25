@@ -8,7 +8,7 @@
 
 **Tech Stack:** Nix (flakes), `nixpkgs` (for `lib`, NixOS module system), `nix-libnet` (address/port validation), `nix-nftypes` (schema + DSL + text renderer), `unshare -rn nft -c -f` (integration), `pkgs.testers.runNixOSTest` (VM tests).
 
-**Reference spec:** `docs/superpowers/specs/2026-04-24-nixos-nftfw-design.md`
+**Reference spec:** `docs/specs/2026-04-24-nixos-nftfw-design.md`
 
 ---
 
@@ -108,7 +108,7 @@ A NixOS module that generates nftables firewall configuration.
 
 Pre-release. The module's option surface and compilation pipeline
 are under active development. See
-`docs/superpowers/specs/2026-04-24-nixos-nftfw-design.md` for the
+`docs/specs/2026-04-24-nixos-nftfw-design.md` for the
 design.
 
 ## Usage
