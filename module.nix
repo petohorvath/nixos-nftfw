@@ -32,6 +32,7 @@
     # Helpers
     (import ./modules/helpers/loopback-accept.nix { inherit lib; })
     (import ./modules/helpers/stop-ruleset.nix { inherit lib; })
+    (import ./modules/helpers/kernel-hardening.nix { inherit lib; })
 
     # Pipeline
     (import ./modules/pipeline { inherit lib nftlib; })

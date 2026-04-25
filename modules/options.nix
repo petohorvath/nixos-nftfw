@@ -85,4 +85,10 @@
       description = "Whether to enable the simple stateful NixOS firewall.";
     };
   };
+
+  options.boot.kernel.sysctl = lib.mkOption {
+    type = lib.types.attrsOf lib.types.unspecified;
+    default = { };
+    description = "Kernel sysctl parameters to set at boot. Stub for standalone eval.";
+  };
 }
