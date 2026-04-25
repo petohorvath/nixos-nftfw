@@ -18,7 +18,6 @@
 
     _internal.ir = lib.mkOption {
       type = lib.types.attrs;
-      default = { };
       internal = true;
       readOnly = true;
       description = "Computed IR for debugging. TODO: remove once stable.";

@@ -49,6 +49,7 @@
           eval-rules-nat = mkTest ./tests/eval/rules-nat.nix;
           assertion-missing-zone = mkTest ./tests/assertions/missing-zone.nix;
           assertion-cyclic-parent = mkTest ./tests/assertions/cyclic-parent.nix;
+          ir-zones-basic = mkTest ./tests/ir/zones-basic.nix;
         });
     };
 }
