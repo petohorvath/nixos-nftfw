@@ -1,3 +1,11 @@
+/*
+  Conntrack object submodules: ct.helpers, ct.timeouts, ct.expectations.
+
+  `objects.ct.helpers.<name>` — conntrack helper (type, protocol, l3proto).
+  `objects.ct.timeouts.<name>` — per-state timeout policy (protocol,
+  l3proto, policy attrset). `objects.ct.expectations.<name>` — conntrack
+  expectations (l3proto, protocol, dport, timeout, size). All use commonFields.
+*/
 { lib }:
 
 { config, ... }:

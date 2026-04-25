@@ -1,3 +1,12 @@
+/*
+  Top-level option surface for networking.nftfw.
+
+  Declares `enable`, `authoritative` (own vs. cooperate with the
+  kernel firewall), and the internal `_internal.ir` read-only attr
+  for debugging. Also declares the module-private
+  `networking.nftables.stopRuleset` extension used by the
+  stop-ruleset helper.
+*/
 { lib }:
 
 { config, ... }:

@@ -1,7 +1,9 @@
-# Helper: reverse-path filter via fib saddr oif lookup.
-#
-# Drops packets whose source address has no route back via the input
-# interface. Opt-in only (default false).
+/*
+  Helper: reverse-path filter via fib saddr oif lookup.
+
+  Drops packets whose source address has no route back via the input
+  interface. Opt-in only (default false).
+*/
 { lib }:
 
 { config, ... }:

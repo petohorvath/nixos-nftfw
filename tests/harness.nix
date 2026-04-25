@@ -1,3 +1,13 @@
+/*
+  Eval-test harness for nixos-nftfw.
+
+  Exports `evalConfig` (wraps lib.evalModules with the module under test
+  and a nixosStubs shim) and `runTests` (runs a lib.runTests suite and
+  returns a derivation that fails on any unexpected result). The
+  `nixosStubs` block declares NixOS-native options the module writes to
+  (networking.nftables.*, networking.firewall.enable, boot.kernel.sysctl)
+  so standalone eval tests work without the full NixOS module tree.
+*/
 { pkgs, libnet, nftlib }:
 
 let

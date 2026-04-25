@@ -1,3 +1,11 @@
+/*
+  Kind-typed SNAT rule submodule (`networking.nftfw.rules.snat.<name>`).
+
+  Emits into nat-postrouting. Adds `translateTo` (endpoint string or
+  null for masquerade); drops `verdict`, `jumpTo`, `gotoTo` (verdict is
+  implicitly the SNAT/masquerade rewrite). Only emits into L3-capable
+  families (ip/ip6/inet).
+*/
 { lib }:
 
 { config, libnet, ... }:

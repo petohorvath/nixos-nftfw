@@ -1,3 +1,11 @@
+/*
+  Table submodule (`networking.nftfw.objects.tables.<name>`).
+
+  Each table is a named nftables table and an emission target for rules
+  and objects. Fields: `family`, `flags`, `comment`, `extraContent`
+  (raw nftypes escape), and `baseChains.*` overrides for hook priority,
+  policy, and extra rules on each base chain.
+*/
 { lib }:
 
 { config, ... }:

@@ -1,3 +1,11 @@
+/*
+  Chain submodule (`networking.nftfw.objects.chains.<name>`).
+
+  Declares user-defined base or regular chains inside a named table
+  (R4 escape from kind-typed rules). Fields: `table`, `type`, `hook`,
+  `priority`, `policy`, `devices`, `comment`, and an ordered `rules`
+  list of raw nftypes rule fragments.
+*/
 { lib }:
 
 { config, ... }:

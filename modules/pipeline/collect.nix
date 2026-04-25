@@ -1,9 +1,11 @@
-# Pipeline stage 1: collect & coerce user-supplied options into the IR.
-#
-# Outputs an attrset:
-#   { zones, nodes, rules, objects }
-# where `zones` already includes built-ins (local, any) plus each node
-# materialized as a synthetic child zone (`node-<name>` keys).
+/*
+  Pipeline stage 1: collect & coerce user-supplied options into the IR.
+
+  Outputs an attrset:
+    { zones, nodes, rules, objects }
+  where `zones` already includes built-ins (local, any) plus each node
+  materialized as a synthetic child zone (`node-<name>` keys).
+*/
 { lib, cfg }:
 
 let

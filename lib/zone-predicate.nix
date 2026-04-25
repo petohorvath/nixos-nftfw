@@ -1,13 +1,15 @@
-# Build the nftables match expression for a zone's membership in a
-# given family and direction.
-#
-# When the user has supplied an ingressExpression / egressExpression,
-# that expression is the predicate (entire override). Otherwise, build
-# an OR of (interface match) ∪ (family-applicable saddr/daddr match).
-#
-# The output `_matches` is a list of nftypes match expressions. The
-# rendering layer (Tasks 21-22) will combine them with OR semantics.
-# Returns null if the zone has no membership in this family/direction.
+/*
+  Build the nftables match expression for a zone's membership in a
+  given family and direction.
+
+  When the user has supplied an ingressExpression / egressExpression,
+  that expression is the predicate (entire override). Otherwise, build
+  an OR of (interface match) ∪ (family-applicable saddr/daddr match).
+
+  The output `_matches` is a list of nftypes match expressions. The
+  rendering layer (Tasks 21-22) will combine them with OR semantics.
+  Returns null if the zone has no membership in this family/direction.
+*/
 { lib, nftlib }:
 
 let

@@ -1,4 +1,6 @@
-# Reference-resolution helpers used by pipeline stage 2 (validate).
+/*
+  Reference-resolution helpers used by pipeline stage 2 (validate).
+*/
 { lib }:
 
 rec {

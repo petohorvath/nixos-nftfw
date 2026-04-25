@@ -1,12 +1,14 @@
-# Pipeline stage 4: build the table plan IR.
-#
-# Output is an attrset keyed by table name; each entry has:
-#   { name, family, flags, synthesized, neededBaseChains }
-#
-# `main` is lazily synthesized as an inet table iff the user declares
-# zero tables AND has at least one rule that needs an emission target.
-# `neededBaseChains` is left empty here — populated in stage 5 when rule
-# emission is resolved.
+/*
+  Pipeline stage 4: build the table plan IR.
+
+  Output is an attrset keyed by table name; each entry has:
+    { name, family, flags, synthesized, neededBaseChains }
+
+  `main` is lazily synthesized as an inet table iff the user declares
+  zero tables AND has at least one rule that needs an emission target.
+  `neededBaseChains` is left empty here — populated in stage 5 when rule
+  emission is resolved.
+*/
 { lib, collected }:
 
 let

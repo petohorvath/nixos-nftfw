@@ -1,22 +1,24 @@
-# Pipeline stage 5: resolve rule emission.
-#
-# For each rule × each applicable table, produce an emission record:
-#   { kind, name, tableName, chain, family, rule }
-#
-# - `chain` is the canonical chain name derived from (kind, from, to):
-#     filter/icmp:  "input" if to == "local" else "output" if from == "local"
-#                   else "forward"
-#     mangle:       "mangle-prerouting"
-#     dnat/redirect:"nat-prerouting"
-#     snat:         "nat-postrouting"
-# - `family` is the target table's family (the rule will render with
-#   only the family-applicable subset of any zones it references —
-#   that family-scoping happens here in stage 5 to a degree, but
-#   the actual predicate emission per family is in the renderer).
-# - NAT kinds are skipped for non-L3 tables (arp, bridge — kind = nat
-#   only makes sense in ip/ip6/inet).
-#
-# Output: a flat list of emission records.
+/*
+  Pipeline stage 5: resolve rule emission.
+
+  For each rule × each applicable table, produce an emission record:
+    { kind, name, tableName, chain, family, rule }
+
+  - `chain` is the canonical chain name derived from (kind, from, to):
+      filter/icmp:  "input" if to == "local" else "output" if from == "local"
+                    else "forward"
+      mangle:       "mangle-prerouting"
+      dnat/redirect:"nat-prerouting"
+      snat:         "nat-postrouting"
+  - `family` is the target table's family (the rule will render with
+    only the family-applicable subset of any zones it references —
+    that family-scoping happens here in stage 5 to a degree, but
+    the actual predicate emission per family is in the renderer).
+  - NAT kinds are skipped for non-L3 tables (arp, bridge — kind = nat
+    only makes sense in ip/ip6/inet).
+
+  Output: a flat list of emission records.
+*/
 { lib, collected, irZones, irTables }:
 
 let

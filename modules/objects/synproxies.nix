@@ -1,3 +1,10 @@
+/*
+  SYN-proxy submodule (`networking.nftfw.objects.synproxies.<name>`).
+
+  Named SYN-proxy objects for SYN-flood protection. Fields: `mss`
+  (advertised TCP MSS), `wscale` (TCP window scale), `flags`
+  ("timestamp"/"sack-perm"), plus the shared `tables`/`comment`.
+*/
 { lib }:
 
 { config, ... }:

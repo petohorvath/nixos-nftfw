@@ -1,7 +1,9 @@
-# Pipeline stage 2: validate references and structural invariants.
-#
-# Errors are collected and thrown as a single message so the user sees
-# every problem in one pass.
+/*
+  Pipeline stage 2: validate references and structural invariants.
+
+  Errors are collected and thrown as a single message so the user sees
+  every problem in one pass.
+*/
 { lib, collected }:
 
 let

@@ -1,3 +1,13 @@
+/*
+  nixos-nftfw flake.
+
+  Inputs: nixpkgs (unstable), nix-libnet (address/port type library),
+  nix-nftypes (nftables DSL + renderer).
+
+  Outputs: nixosModules.default (alias: nixosModules.nftfw), a formatter,
+  and a checks attrset with eval, assertion, IR, render, integration,
+  and VM tests for every supported system.
+*/
 {
   description = "nixos-nftfw — NixOS nftables firewall module";
 

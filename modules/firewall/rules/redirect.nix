@@ -1,3 +1,10 @@
+/*
+  Kind-typed redirect rule submodule (`networking.nftfw.rules.redirect.<name>`).
+
+  Emits into nat-prerouting. Adds `redirectTo` (local port for transparent
+  proxy); drops `to`, `verdict`, `jumpTo`, `gotoTo` (verdict is implicitly
+  the redirect). Only emits into L3-capable families (ip/ip6/inet).
+*/
 { lib }:
 
 { config, libnet, ... }:

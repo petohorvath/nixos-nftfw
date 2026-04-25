@@ -1,3 +1,12 @@
+/*
+  Zone submodule (`networking.nftfw.zones.<name>`).
+
+  Each zone is a named traffic grouping. Fields: `parent` (hierarchy),
+  `interfaces` (iifname/oifname members), `addresses.ipv4`/`.ipv6`
+  (CIDR lists), `conntrackZone` (integer, for multi-WAN isolation),
+  `ingressExpression`/`egressExpression` (raw nftypes override), and
+  `comment`. Built-ins `local` and `any` are pre-populated.
+*/
 { lib }:
 
 { config, libnet, ... }:

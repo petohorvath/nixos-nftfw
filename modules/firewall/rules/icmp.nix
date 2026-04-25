@@ -1,3 +1,10 @@
+/*
+  Kind-typed ICMP rule submodule (`networking.nftfw.rules.icmp.<name>`).
+
+  Extends rule-core fields with `icmp.v4Types` and `icmp.v6Types` for
+  ICMPv4/v6 message type matching. Default verdict is "accept". Rules
+  are dispatched into input/forward/output chains like filter rules.
+*/
 { lib }:
 
 { config, libnet, ... }:

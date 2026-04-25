@@ -1,11 +1,13 @@
-# Pipeline stage 3: build the zone graph IR.
-#
-# For each zone (including built-in `local`/`any` and the synthetic
-# `node-<name>` zones), compute:
-#   - parent (already in collected.zones)
-#   - descendants (zones whose parent points back here)
-#   - familySet (which nftables families this zone applies to)
-#   - predicates: per-family per-direction nftypes match expressions
+/*
+  Pipeline stage 3: build the zone graph IR.
+
+  For each zone (including built-in `local`/`any` and the synthetic
+  `node-<name>` zones), compute:
+    - parent (already in collected.zones)
+    - descendants (zones whose parent points back here)
+    - familySet (which nftables families this zone applies to)
+    - predicates: per-family per-direction nftypes match expressions
+*/
 { lib, nftlib, collected }:
 
 let

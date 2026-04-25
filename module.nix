@@ -1,3 +1,11 @@
+/*
+  Top-level NixOS module for nixos-nftfw.
+
+  Receives `lib`, `nftlib`, and `libnet` at import time, threads them
+  into _module.args so every submodule can access them as plain
+  function arguments, and aggregates all submodules (firewall,
+  objects, helpers, pipeline) via `imports`.
+*/
 { lib, nftlib, libnet }:
 
 { config, pkgs, ... }:

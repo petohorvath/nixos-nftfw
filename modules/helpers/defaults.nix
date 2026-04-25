@@ -1,13 +1,15 @@
-# Meta-helper: sensible defaults bundle.
-#
-# Imports loopback-accept, conntrack-baseline, and stop-ruleset
-# helpers. Their individual `enable` options default to
-# `cfg.authoritative`, so users who enable authoritative mode get
-# the full bundle out of the box. Users who want the bundle in
-# cooperative mode can `imports = [ <nftfw>/modules/helpers/defaults.nix ]`
-# and set the individual helper enables to true, OR set
-# `networking.nftfw.helpers.defaults.enable = true` to force-enable
-# all three.
+/*
+  Meta-helper: sensible defaults bundle.
+
+  Imports loopback-accept, conntrack-baseline, and stop-ruleset
+  helpers. Their individual `enable` options default to
+  `cfg.authoritative`, so users who enable authoritative mode get
+  the full bundle out of the box. Users who want the bundle in
+  cooperative mode can `imports = [ <nftfw>/modules/helpers/defaults.nix ]`
+  and set the individual helper enables to true, OR set
+  `networking.nftfw.helpers.defaults.enable = true` to force-enable
+  all three.
+*/
 { lib }:
 
 { config, ... }:

@@ -1,3 +1,10 @@
+/*
+  Shared `commonFields` used by every Layer A object submodule.
+
+  Provides `tables` (emission scope — null = auto-emit to all compatible
+  tables, list = explicit restriction) and `comment` (free-form string).
+  Imported and merged into each object submodule's options attrset.
+*/
 { lib }:
 
 {

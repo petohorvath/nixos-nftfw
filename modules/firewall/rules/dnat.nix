@@ -1,3 +1,11 @@
+/*
+  Kind-typed DNAT rule submodule (`networking.nftfw.rules.dnat.<name>`).
+
+  Emits into nat-prerouting. Adds `forwardTo` (endpoint string for the
+  DNAT target); drops `to`, `verdict`, `jumpTo`, `gotoTo` (verdict is
+  implicitly the DNAT rewrite). Only emits into L3-capable families
+  (ip/ip6/inet).
+*/
 { lib }:
 
 { config, libnet, ... }:

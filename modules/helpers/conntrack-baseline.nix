@@ -1,7 +1,9 @@
-# Helper: accept established/related connections and drop invalid ones.
-#
-# Adds two priority-100 filter rules. Defaults to enabled in authoritative
-# mode (sensible default for an own-the-firewall config).
+/*
+  Helper: accept established/related connections and drop invalid ones.
+
+  Adds two priority-100 filter rules. Defaults to enabled in authoritative
+  mode (sensible default for an own-the-firewall config).
+*/
 { lib }:
 
 { config, ... }:

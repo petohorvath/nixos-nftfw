@@ -1,3 +1,11 @@
+/*
+  Stateful object submodules: counters, quotas, and limits.
+
+  `objects.counters.<name>` — named packet/byte counters (fields: packets,
+  bytes, plus commonFields). `objects.quotas.<name>` — byte quotas (bytes,
+  used, inv). `objects.limits.<name>` — rate limits (rate, per, rateUnit,
+  burst, burstUnit, inv). All auto-emit to compatible tables.
+*/
 { lib }:
 
 { config, ... }:

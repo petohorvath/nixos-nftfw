@@ -1,8 +1,10 @@
-# Helper: minimal-safe nftables ruleset loaded on service stop.
-#
-# Wired to `networking.nftables.stopRuleset`. Defaults to enabled in
-# authoritative mode. The default `keepAlivePorts` includes the OpenSSH
-# port if `services.openssh.enable` is true.
+/*
+  Helper: minimal-safe nftables ruleset loaded on service stop.
+
+  Wired to `networking.nftables.stopRuleset`. Defaults to enabled in
+  authoritative mode. The default `keepAlivePorts` includes the OpenSSH
+  port if `services.openssh.enable` is true.
+*/
 { lib }:
 
 { config, libnet, ... }:

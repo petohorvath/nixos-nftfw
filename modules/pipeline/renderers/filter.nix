@@ -1,15 +1,17 @@
-# Renderer for `rules.filter` kind.
-#
-# Input:
-#   { resolvedRule, zonePredicates, refs }
-# where:
-#   - resolvedRule = { kind, name, tableName, chain, family, rule }
-#   - zonePredicates is a passthrough for downstream extension; not yet
-#     consumed (zone match expressions emerge in stage 9 assembly)
-#   - refs is a name-resolution helper passthrough; not yet consumed
-#
-# Output: list of nftypes statement attrsets that, in order, encode
-# matches + statements + verdict for the rule.
+/*
+  Renderer for `rules.filter` kind.
+
+  Input:
+    { resolvedRule, zonePredicates, refs }
+  where:
+    - resolvedRule = { kind, name, tableName, chain, family, rule }
+    - zonePredicates is a passthrough for downstream extension; not yet
+      consumed (zone match expressions emerge in stage 9 assembly)
+    - refs is a name-resolution helper passthrough; not yet consumed
+
+  Output: list of nftypes statement attrsets that, in order, encode
+  matches + statements + verdict for the rule.
+*/
 { lib, nftlib }:
 
 { resolvedRule, zonePredicates ? { }, refs ? { } }:

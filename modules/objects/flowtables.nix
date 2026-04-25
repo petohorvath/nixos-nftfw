@@ -1,3 +1,11 @@
+/*
+  Flowtable submodule (`networking.nftfw.objects.flowtables.<name>`).
+
+  Named nftables flowtables for kernel-level connection tracking offload.
+  Fields: `hook` (always "ingress"), `priority`, `devices` (enrolled
+  interfaces), plus the shared `tables`/`comment` from commonFields.
+  Only emits into L3-capable families (ip/ip6/inet).
+*/
 { lib }:
 
 { config, ... }:

@@ -1,7 +1,9 @@
-# Helper: declare a flowtable and enrol established/related forwarded traffic.
-#
-# Opt-in only (default false). Requires interfaces to be specified for
-# the enrolment rule to be added.
+/*
+  Helper: declare a flowtable and enrol established/related forwarded traffic.
+
+  Opt-in only (default false). Requires interfaces to be specified for
+  the enrolment rule to be added.
+*/
 { lib }:
 
 { config, ... }:

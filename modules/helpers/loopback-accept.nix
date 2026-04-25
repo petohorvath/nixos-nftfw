@@ -1,8 +1,10 @@
-# Helper: accept all traffic on the loopback interface.
-#
-# Defaults to enabled when authoritative mode is on (sensible default
-# for an own-the-firewall config). Users can opt out explicitly. In
-# cooperative mode the default is off.
+/*
+  Helper: accept all traffic on the loopback interface.
+
+  Defaults to enabled when authoritative mode is on (sensible default
+  for an own-the-firewall config). Users can opt out explicitly. In
+  cooperative mode the default is off.
+*/
 { lib }:
 
 { config, ... }:

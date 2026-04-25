@@ -1,3 +1,11 @@
+/*
+  Kind-typed filter rule submodule (`networking.nftfw.rules.filter.<name>`).
+
+  Uses the common rule-core fields (match + statements + verdict +
+  dispatch from rules-common.nix). Default verdict is "accept"; rules
+  are dispatched into input/forward/output chains based on the (from, to)
+  zone tuple by the pipeline.
+*/
 { lib }:
 
 { config, libnet, ... }:

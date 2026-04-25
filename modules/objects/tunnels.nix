@@ -1,3 +1,11 @@
+/*
+  Tunnel submodule (`networking.nftfw.objects.tunnels.<name>`).
+
+  Named tunnel objects for VXLAN, ERSPAN, and GENEVE encapsulation
+  matching. Fields: `id`, `src-ipv4`/`dst-ipv4`/`src-ipv6`/`dst-ipv6`,
+  `sport`/`dport`, and a `tunnel` attrset for type-specific fields,
+  plus the shared `tables`/`comment` from commonFields.
+*/
 { lib }:
 
 { config, libnet, ... }:

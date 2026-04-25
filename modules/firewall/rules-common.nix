@@ -1,19 +1,21 @@
-# Shared rule-field types for kind-typed rule submodules and chain-centric
-# rule fragments.
-#
-# This file declares NO options of its own — it returns an attrset of
-# field groups that rule-kind submodules (Tasks 13-16) compose into their
-# own option sets.
-#
-# Three composition aliases:
-#   - matchSubmodule  : the `match` field's submodule type
-#   - statementFields : counter/log/limit/quota/...; merged into rule options
-#   - verdictFields   : verdict/jumpTo/gotoTo
-#   - dispatchFields  : from/to/tables (only used by kind-typed rules, not by
-#                       chain-centric fragments)
-#   - coreFields      : enable/comment/priority/match + statements + verdicts
-#   - ruleCoreFields  : coreFields + dispatchFields (for kind-typed rules)
-#   - ruleFragmentFields : coreFields (for chain-centric rule fragments)
+/*
+  Shared rule-field types for kind-typed rule submodules and chain-centric
+  rule fragments.
+
+  This file declares NO options of its own — it returns an attrset of
+  field groups that rule-kind submodules (Tasks 13-16) compose into their
+  own option sets.
+
+  Three composition aliases:
+    - matchSubmodule  : the `match` field's submodule type
+    - statementFields : counter/log/limit/quota/...; merged into rule options
+    - verdictFields   : verdict/jumpTo/gotoTo
+    - dispatchFields  : from/to/tables (only used by kind-typed rules, not by
+                        chain-centric fragments)
+    - coreFields      : enable/comment/priority/match + statements + verdicts
+    - ruleCoreFields  : coreFields + dispatchFields (for kind-typed rules)
+    - ruleFragmentFields : coreFields (for chain-centric rule fragments)
+*/
 { lib, libnet }:
 
 rec {

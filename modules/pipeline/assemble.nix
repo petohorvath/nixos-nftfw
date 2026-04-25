@@ -1,13 +1,15 @@
-# Stage 9: assemble each target table as a dsl-compatible table value.
-#
-# Combines: chains (base + per-zone subchains), rendered rules in each
-# chain, and renderedObjects into a single dsl.table-compatible body
-# per table name.
-#
-# The output shape per table is:
-#   { family, name, flags, chains = { <name> = { type, hook, prio, policy,
-#     rules = [{ expr = [...] }] }; }, sets, maps, counters, quotas,
-#     limits, flowtables }
+/*
+  Stage 9: assemble each target table as a dsl-compatible table value.
+
+  Combines: chains (base + per-zone subchains), rendered rules in each
+  chain, and renderedObjects into a single dsl.table-compatible body
+  per table name.
+
+  The output shape per table is:
+    { family, name, flags, chains = { <name> = { type, hook, prio, policy,
+      rules = [{ expr = [...] }] }; }, sets, maps, counters, quotas,
+      limits, flowtables }
+*/
 { lib, nftlib, irTables, irRules, irDispatch, renderedObjects, renderRules, cfg }:
 
 let

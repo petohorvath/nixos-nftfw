@@ -1,8 +1,10 @@
-# Priority band constants for kind-typed rules.
-#
-# Used by the dispatch generator (Task 21) and by helper modules
-# (Tasks 24-25) to slot rules into the appropriate position within
-# a per-zone dispatch chain.
+/*
+  Priority band constants for kind-typed rules.
+
+  Used by the dispatch generator (Task 21) and by helper modules
+  (Tasks 24-25) to slot rules into the appropriate position within
+  a per-zone dispatch chain.
+*/
 {
   preDispatch = 50;    # 1-99   — infrastructure (bogons, conntrack baseline, early drops)
   early       = 250;   # 100-499 — early management

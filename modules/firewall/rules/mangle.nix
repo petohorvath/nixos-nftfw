@@ -1,3 +1,10 @@
+/*
+  Kind-typed mangle rule submodule (`networking.nftfw.rules.mangle.<name>`).
+
+  Emits into mangle-prerouting. Adds `setMark` and `setDscp` fields;
+  drops the `to` dispatch field (destination is unknown at prerouting).
+  No default verdict — mangle rules are non-terminal by design.
+*/
 { lib }:
 
 { config, libnet, ... }:

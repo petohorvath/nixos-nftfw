@@ -1,5 +1,7 @@
-# Family compatibility tables. Used by stage 3 (zone applicable-family
-# computation) and stage 4 (table emission target derivation).
+/*
+  Family compatibility tables. Used by stage 3 (zone applicable-family
+  computation) and stage 4 (table emission target derivation).
+*/
 { lib }:
 
 rec {

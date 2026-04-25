@@ -1,9 +1,11 @@
-# Stage 8: render named objects (sets, maps, counters, quotas, limits,
-# ct.{helpers,timeouts,expectations}, flowtables, secmarks, synproxies,
-# tunnels) into nftypes structures, scoped per target table.
-#
-# Per-table emission with auto-compatibility checking (set type vs.
-# table family) and explicit `tables = [...]` restriction.
+/*
+  Stage 8: render named objects (sets, maps, counters, quotas, limits,
+  ct.{helpers,timeouts,expectations}, flowtables, secmarks, synproxies,
+  tunnels) into nftypes structures, scoped per target table.
+
+  Per-table emission with auto-compatibility checking (set type vs.
+  table family) and explicit `tables = [...]` restriction.
+*/
 { lib, nftlib, collected, irTables }:
 
 let

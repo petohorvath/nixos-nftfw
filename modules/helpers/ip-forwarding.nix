@@ -1,7 +1,9 @@
-# Helper: enable IP forwarding sysctls for routing/NAT setups.
-#
-# Sets net.ipv4.ip_forward and/or net.ipv6.conf.all.forwarding.
-# Opt-in only (default false).
+/*
+  Helper: enable IP forwarding sysctls for routing/NAT setups.
+
+  Sets net.ipv4.ip_forward and/or net.ipv6.conf.all.forwarding.
+  Opt-in only (default false).
+*/
 { lib }:
 
 { config, ... }:

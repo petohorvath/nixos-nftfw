@@ -1,3 +1,11 @@
+/*
+  Node submodule (`networking.nftfw.nodes.<name>`).
+
+  A node is a named single host. Fields: `zone` (required — parent zone),
+  `address.ipv4`/`.ipv6` (single addresses), and `comment`. The pipeline
+  materialises each node as a synthetic child zone (`node-<name>`) at
+  /32 or /128, usable wherever a zone name is accepted.
+*/
 { lib }:
 
 { config, libnet, ... }:

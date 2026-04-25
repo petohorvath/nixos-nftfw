@@ -1,7 +1,9 @@
-# Helper: apply a baseline of kernel sysctls that harden the network stack.
-#
-# Opt-in only (default false) because kernel sysctls are intrusive and
-# may conflict with other modules or user preferences.
+/*
+  Helper: apply a baseline of kernel sysctls that harden the network stack.
+
+  Opt-in only (default false) because kernel sysctls are intrusive and
+  may conflict with other modules or user preferences.
+*/
 { lib }:
 
 { config, ... }:

@@ -1,3 +1,10 @@
+/*
+  Set submodule (`networking.nftfw.objects.sets.<name>`).
+
+  Named nftables sets auto-emitted to compatible tables. Fields: `type`
+  (single or concatenated), `flags`, `elements`, `timeout`, `size`,
+  plus the shared `tables`/`comment` from commonFields.
+*/
 { lib }:
 
 { config, ... }:

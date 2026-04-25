@@ -1,3 +1,10 @@
+/*
+  Secmark submodule (`networking.nftfw.objects.secmarks.<name>`).
+
+  Named secmark objects for SELinux/AppArmor packet labelling. Field:
+  `context` (the security context string), plus the shared
+  `tables`/`comment` from commonFields.
+*/
 { lib }:
 
 { config, ... }:

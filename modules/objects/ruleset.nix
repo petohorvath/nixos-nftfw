@@ -1,3 +1,11 @@
+/*
+  Raw ruleset escape (`networking.nftfw.objects.ruleset`).
+
+  Accepts a raw nftypes ruleset value; its rendered text is appended
+  verbatim to `networking.nftables.ruleset` alongside the per-table
+  content the pipeline generates. Use for constructs the module does
+  not model or to take full authorship of the ruleset.
+*/
 { lib }:
 
 { config, ... }:

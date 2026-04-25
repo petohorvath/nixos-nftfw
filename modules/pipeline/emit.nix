@@ -1,17 +1,19 @@
-# Stage 10: emit assembled tables to NixOS native nftables options.
-#
-# - Each table is rendered to full nftables text (add table + add chain +
-#   add rule commands) via nftlib.toTextPretty and emitted into
-#   networking.nftables.ruleset so the text is passed verbatim to `nft -f`.
-#   (networking.nftables.tables wraps content in an extra `table { }` block
-#   which is incompatible with the add-command format we generate.)
-# - A snapshot of the last emitted table content is also kept in
-#   networking.nftables.tables.<name>.content for standalone harness tests
-#   (e.g. integration-smoke) that read the raw text without loading it via
-#   the NixOS nftables service.
-# - objects.ruleset (raw Layer A escape) → appended to networking.nftables.ruleset.
-# - Authoritative mode enables nftables, flushes the ruleset on load, and
-#   disables the simpler networking.firewall.
+/*
+  Stage 10: emit assembled tables to NixOS native nftables options.
+
+  - Each table is rendered to full nftables text (add table + add chain +
+    add rule commands) via nftlib.toTextPretty and emitted into
+    networking.nftables.ruleset so the text is passed verbatim to `nft -f`.
+    (networking.nftables.tables wraps content in an extra `table { }` block
+    which is incompatible with the add-command format we generate.)
+  - A snapshot of the last emitted table content is also kept in
+    networking.nftables.tables.<name>.content for standalone harness tests
+    (e.g. integration-smoke) that read the raw text without loading it via
+    the NixOS nftables service.
+  - objects.ruleset (raw Layer A escape) → appended to networking.nftables.ruleset.
+  - Authoritative mode enables nftables, flushes the ruleset on load, and
+    disables the simpler networking.firewall.
+*/
 { lib, nftlib, cfg, assembled }:
 
 let

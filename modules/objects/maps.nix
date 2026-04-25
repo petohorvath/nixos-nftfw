@@ -1,3 +1,10 @@
+/*
+  Map submodule (`networking.nftfw.objects.maps.<name>`).
+
+  Named nftables maps and verdict maps auto-emitted to all tables.
+  Fields: `type` (key type), `map` (value type), `flags`, `elements`,
+  `timeout`, `size`, plus the shared `tables`/`comment` from commonFields.
+*/
 { lib }:
 
 { config, ... }:
