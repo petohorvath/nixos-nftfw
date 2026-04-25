@@ -54,6 +54,7 @@
           ir-rule-resolution = mkTest ./tests/ir/rule-resolution.nix;
           ir-dispatch-basic = mkTest ./tests/ir/dispatch-basic.nix;
           render-filter-basic = mkTest ./tests/render/filter-basic.nix;
+          integration-smoke = mkTest ./tests/integration/smoke.nix;
         });
     };
 }
