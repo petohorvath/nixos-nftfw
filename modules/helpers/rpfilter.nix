@@ -11,6 +11,7 @@
 let
   cfg = config.networking.nftfw;
   hcfg = cfg.helpers.rpfilter;
+  bands = import ../../lib/priority-bands.nix;
 
   fibFlags = if hcfg.strict then "saddr . iif . mark" else "saddr . mark";
 in {
@@ -34,7 +35,7 @@ in {
 
   config = lib.mkIf (cfg.enable && hcfg.enable) {
     networking.nftfw.rules.filter._helper-rpfilter = {
-      priority = 50;
+      priority = bands.preDispatch;
       from = "any";
       to = "any";
       match.extraMatch = lib.optional (hcfg.exemptInterfaces != [ ]) {

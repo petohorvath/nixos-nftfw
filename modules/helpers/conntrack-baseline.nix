@@ -11,6 +11,7 @@
 let
   cfg = config.networking.nftfw;
   hcfg = cfg.helpers.conntrackBaseline;
+  bands = import ../../lib/priority-bands.nix;
 in {
   options.networking.nftfw.helpers.conntrackBaseline = {
     enable = lib.mkOption {
@@ -27,14 +28,14 @@ in {
   config = lib.mkIf (cfg.enable && hcfg.enable) {
     networking.nftfw.rules.filter = {
       _helper-conntrack-est-rel = {
-        priority = 100;
+        priority = bands.early;
         from = "any";
         to = "any";
         match.ct.state = [ "established" "related" ];
         verdict = "accept";
       };
       _helper-conntrack-invalid = {
-        priority = 100;
+        priority = bands.early;
         from = "any";
         to = "any";
         match.ct.state = [ "invalid" ];

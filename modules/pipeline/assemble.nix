@@ -13,11 +13,23 @@
 { lib, nftlib, irTables, irRules, irDispatch, renderedObjects, renderRules, cfg }:
 
 let
+  /*
+    nftables hook priorities for the base chains we create.
+    Defaults match the conventional nftables order — NAT prerouting
+    runs before the filter chain, mangle prerouting runs before NAT.
+  */
+  hookPriority = {
+    natPrerouting  = -100;
+    natPostrouting = 100;
+    manglePrerouting = -150;
+    filter = 0;
+  };
+
   # Default base-chain hook & priority assignments for filter chains.
   filterChain = chainName:
     let
       hookName = chainName;
-      priority = 0;
+      priority = hookPriority.filter;
       authoritativePolicy = {
         input = "drop";
         forward = "drop";
@@ -40,7 +52,8 @@ let
         else if direction == "nat-postrouting" then "postrouting"
         else throw "natChain: bad direction '${direction}'";
       priority =
-        if direction == "nat-prerouting" then -100 else 100;
+        if direction == "nat-prerouting" then hookPriority.natPrerouting
+        else hookPriority.natPostrouting;
     in {
       type = "nat";
       hook = hookName;
@@ -53,7 +66,7 @@ let
       hook =
         if direction == "mangle-prerouting" then "prerouting"
         else throw "mangleChain: bad direction '${direction}'";
-      prio = -150;
+      prio = hookPriority.manglePrerouting;
     };
 
   baseChainConfig = chainName:

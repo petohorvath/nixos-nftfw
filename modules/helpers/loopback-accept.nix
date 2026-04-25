@@ -12,6 +12,7 @@
 let
   cfg = config.networking.nftfw;
   hcfg = cfg.helpers.loopbackAccept;
+  bands = import ../../lib/priority-bands.nix;
 in {
   options.networking.nftfw.helpers.loopbackAccept = {
     enable = lib.mkOption {
@@ -26,7 +27,7 @@ in {
 
   config = lib.mkIf (cfg.enable && hcfg.enable) {
     networking.nftfw.rules.filter._helper-loopback-accept = {
-      priority = 100;
+      priority = bands.early;
       from = "any";
       to = "local";
       match.extraMatch = [

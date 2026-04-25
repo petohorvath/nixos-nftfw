@@ -11,6 +11,7 @@
 let
   cfg = config.networking.nftfw;
   hcfg = cfg.helpers.flowOffload;
+  bands = import ../../lib/priority-bands.nix;
 in {
   options.networking.nftfw.helpers.flowOffload = {
     enable = lib.mkOption {
@@ -45,7 +46,7 @@ in {
     }
     (lib.mkIf (hcfg.interfaces != [ ]) {
       networking.nftfw.rules.filter._helper-flow-offload = {
-        priority = 100;
+        priority = bands.early;
         from = "any";
         to = "any";
         match.ct.state = [ "established" "related" ];
