@@ -1,9 +1,9 @@
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
-  common = import ../rules-common.nix { inherit lib; };
+  common = import ../rules-common.nix { inherit lib libnet; };
 
   # Drop `to` from ruleCoreFields (mangle prerouting has no destination zone)
   baseFields = lib.filterAttrs (n: _: n != "to") common.ruleCoreFields;

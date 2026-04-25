@@ -1,9 +1,9 @@
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
-  common = import ../rules-common.nix { inherit lib; };
+  common = import ../rules-common.nix { inherit lib libnet; };
 
   # Drop fields the kind doesn't expose: to (destination is rewritten),
   # and the three verdict fields (verdict is implicitly the dnat).

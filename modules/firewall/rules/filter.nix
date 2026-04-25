@@ -1,9 +1,9 @@
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
-  common = import ../rules-common.nix { inherit lib; };
+  common = import ../rules-common.nix { inherit lib libnet; };
 
   filterRuleSubmodule = { name, ... }: {
     options = common.ruleCoreFields;

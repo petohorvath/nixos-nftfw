@@ -14,28 +14,28 @@
 #   - coreFields      : enable/comment/priority/match + statements + verdicts
 #   - ruleCoreFields  : coreFields + dispatchFields (for kind-typed rules)
 #   - ruleFragmentFields : coreFields (for chain-centric rule fragments)
-{ lib }:
+{ lib, libnet }:
 
 rec {
   matchSubmodule = { ... }: {
     options = {
       srcAddresses.ipv4 = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+        type = lib.types.listOf libnet.types.ipv4Cidr;
         default = [ ];
         description = "IPv4 source addresses or CIDR blocks to match.";
       };
       srcAddresses.ipv6 = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+        type = lib.types.listOf libnet.types.ipv6Cidr;
         default = [ ];
         description = "IPv6 source addresses or CIDR blocks to match.";
       };
       dstAddresses.ipv4 = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+        type = lib.types.listOf libnet.types.ipv4Cidr;
         default = [ ];
         description = "IPv4 destination addresses or CIDR blocks to match.";
       };
       dstAddresses.ipv6 = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+        type = lib.types.listOf libnet.types.ipv6Cidr;
         default = [ ];
         description = "IPv6 destination addresses or CIDR blocks to match.";
       };
@@ -50,22 +50,22 @@ rec {
         description = "Name of an `objects.sets.<name>` to match against the destination address.";
       };
       srcPorts.tcp = lib.mkOption {
-        type = lib.types.listOf lib.types.unspecified;
+        type = lib.types.listOf (lib.types.either libnet.types.port libnet.types.portRange);
         default = [ ];
         description = "TCP source ports or port ranges to match.";
       };
       srcPorts.udp = lib.mkOption {
-        type = lib.types.listOf lib.types.unspecified;
+        type = lib.types.listOf (lib.types.either libnet.types.port libnet.types.portRange);
         default = [ ];
         description = "UDP source ports or port ranges to match.";
       };
       dstPorts.tcp = lib.mkOption {
-        type = lib.types.listOf lib.types.unspecified;
+        type = lib.types.listOf (lib.types.either libnet.types.port libnet.types.portRange);
         default = [ ];
         description = "TCP destination ports or port ranges to match.";
       };
       dstPorts.udp = lib.mkOption {
-        type = lib.types.listOf lib.types.unspecified;
+        type = lib.types.listOf (lib.types.either libnet.types.port libnet.types.portRange);
         default = [ ];
         description = "UDP destination ports or port ranges to match.";
       };

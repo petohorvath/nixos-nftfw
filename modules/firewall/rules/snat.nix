@@ -1,9 +1,9 @@
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
-  common = import ../rules-common.nix { inherit lib; };
+  common = import ../rules-common.nix { inherit lib libnet; };
 
   baseFields = lib.filterAttrs
     (n: _: !(builtins.elem n [ "verdict" "jumpTo" "gotoTo" ]))
