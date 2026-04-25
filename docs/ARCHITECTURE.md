@@ -137,7 +137,77 @@ differ.
 
 ---
 
-## 4. Compilation pipeline
+## 4. Eval-time validation via nix-libnet
+
+nix-libnet supplies networking-aware NixOS option types — `ipv4`, `ipv6`,
+`cidr`, `ipv4Cidr`, `ipv6Cidr`, `port`, `portRange`, `endpoint`, and others —
+that reject malformed input at module evaluation rather than at activation time.
+`nixos-nftfw` uses these types throughout the Layer B option surface to catch
+bad addresses, CIDRs, and ports as early as possible in the development loop.
+
+### Where libnet types are applied
+
+**Zones** (`networking.nftfw.zones.<name>`)
+- `addresses.ipv4` — `listOf libnet.types.ipv4Cidr`
+- `addresses.ipv6` — `listOf libnet.types.ipv6Cidr`
+
+**Nodes** (`networking.nftfw.nodes.<name>`)
+- `address.ipv4` — `nullOr libnet.types.ipv4` (single address, no prefix)
+- `address.ipv6` — `nullOr libnet.types.ipv6`
+
+**Rule match fields** (shared across filter, mangle, ICMP, DNAT, SNAT, redirect)
+- `srcAddresses.ipv4`, `dstAddresses.ipv4` — `listOf libnet.types.ipv4Cidr`
+- `srcAddresses.ipv6`, `dstAddresses.ipv6` — `listOf libnet.types.ipv6Cidr`
+- `srcPorts.tcp`, `srcPorts.udp`, `dstPorts.tcp`, `dstPorts.udp` — `listOf (either libnet.types.port libnet.types.portRange)`
+
+**Redirect rules** (`networking.nftfw.rules.redirect.<name>`)
+- `redirectTo` — `libnet.types.port`
+
+**Tunnels** (`networking.nftfw.objects.tunnels.<name>`)
+- `src-ipv4`, `dst-ipv4` — `nullOr libnet.types.ipv4`
+- `src-ipv6`, `dst-ipv6` — `nullOr libnet.types.ipv6`
+- `sport`, `dport` — `nullOr libnet.types.port`
+
+**Stop-ruleset helper** (`networking.nftfw.helpers.stopRuleset`)
+- `keepAlivePorts` — `listOf libnet.types.port`
+
+### Where validation is intentionally deferred
+
+Two areas remain typed as plain `str`:
+
+- **DNAT `forwardTo` and SNAT `translateTo`** accept either a literal endpoint
+  (e.g. `"192.0.2.1:8080"`) or a bare `node-name:port` reference (e.g.
+  `"backend:8080"`). Tightening these to `libnet.types.endpoint` would reject
+  the node-name forms before the renderer has a chance to resolve them. They
+  remain `str` until the node-name resolution logic lands; this is tracked in
+  `TODO.md`.
+
+- **Set and map `elements`** are typed `unspecified`. The valid element shape
+  depends on the parent object's `type` field (e.g. `ipv4_addr`, `inet_service`,
+  concatenated types). Element-level validation will arrive together with the
+  renderer that interprets them.
+
+### Wiring
+
+`module.nix` receives `libnet` as a flake-level argument, calls
+`libnet.withLib lib` to bind it to the module's `lib`, and exposes the result
+via `_module.args.libnet`. Every submodule that needs networking types declares
+`{ libnet, ... }:` in its inner function and references types as
+`libnet.types.ipv4Cidr`, `libnet.types.port`, etc. No submodule imports libnet
+directly; all access goes through the module argument.
+
+### Failure mode
+
+When a malformed value is supplied — for example
+`addresses.ipv4 = [ "999.0.0.1/24" ]` — `nixos-rebuild switch` (or
+`nix flake check`) fails at evaluation time with a libnet-generated error
+message that names the offending option path. This is significantly earlier
+than a failure at `nft -f` during service activation, which would only surface
+after the build completed and the unit started.
+
+---
+
+## 5. Compilation pipeline
 
 ```
 networking.nftfw.*
@@ -198,7 +268,7 @@ records without touching the IR's internal structure.
 
 ---
 
-## 5. Dispatch model
+## 6. Dispatch model
 
 For each major base chain in each target table, the compiler creates
 per-zone subchains. The base chain dispatches to them by zone predicate,
@@ -248,7 +318,7 @@ correct without extra predicates.
 
 ---
 
-## 6. Family scoping (F3)
+## 7. Family scoping (F3)
 
 Zones and rules are **global declarations**. Tables are **emission targets**.
 The compiler determines which declarations land in which tables based on
@@ -290,7 +360,7 @@ synthesis occurs if any table is declared or if there are no rules.
 
 ---
 
-## 7. Extension points
+## 8. Extension points
 
 ### Adding a new rule kind
 
@@ -321,7 +391,7 @@ modified IR. Use sparingly — the common cases do not require IR passes.
 
 ---
 
-## 8. Testing strategy
+## 9. Testing strategy
 
 All checks are wired into `nix flake check`.
 

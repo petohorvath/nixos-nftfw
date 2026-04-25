@@ -20,6 +20,11 @@ and tested:
 - Family scoping (F3): global declarations, per-table emission, dual-stack
   split, lazy `main` table synthesis
 - Per-zone subchain dispatch with priority bands and zone hierarchy jumps
+- Eval-time validation via nix-libnet — IP addresses, CIDR blocks,
+  ports, and endpoint fields are typed against libnet's NixOS-aware
+  types, so malformed values are rejected by `nixos-rebuild` rather
+  than silently slipping into the kernel ruleset. See ARCHITECTURE.md
+  for the full list of validated fields.
 - Test suite: pure-eval, golden IR snapshots, render snapshots, assertion
   tests, integration (`nft -c`), and VM tests
 
