@@ -22,6 +22,8 @@
 { lib, collected, irZones, irTables }:
 
 let
+  ruleKinds = (import ../../lib/rule-kinds.nix).kinds;
+
   isLocal = name: name == "local";
 
   pickChain = { kind, from, to }:
@@ -80,4 +82,4 @@ let
       (lib.attrNames kindRules);
 
 in
-  lib.concatMap collectKind [ "filter" "icmp" "mangle" "dnat" "snat" "redirect" ]
+  lib.concatMap collectKind ruleKinds

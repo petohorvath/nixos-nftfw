@@ -8,6 +8,12 @@ rec {
   # Every nftables family.
   all = [ "ip" "ip6" "inet" "arp" "bridge" "netdev" ];
 
+  # Families that carry IPv4 traffic.
+  v4Families = [ "ip" "inet" "netdev" "bridge" ];
+
+  # Families that carry IPv6 traffic.
+  v6Families = [ "ip6" "inet" "netdev" "bridge" ];
+
   # Compute the families a zone applies to, given its declaration.
   # Rules:
   #   - ingressExpression set → user-asserted; applies to every family
@@ -22,9 +28,6 @@ rec {
       hasV6    = zone.addresses.ipv6 != [ ];
       hasExpr  = (zone.ingressExpression or null) != null
               || (zone.egressExpression or null) != null;
-
-      v4Families = [ "ip" "inet" "netdev" "bridge" ];
-      v6Families = [ "ip6" "inet" "netdev" "bridge" ];
     in
       if hasExpr then all
       else if hasIface && !hasV4 && !hasV6 then all

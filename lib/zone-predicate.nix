@@ -13,6 +13,8 @@
 { lib, nftlib }:
 
 let
+  nftFamily = import ./family.nix { inherit lib; };
+
   # `family` is the target table family ("ip", "ip6", "inet", "netdev",
   # "bridge", "arp"). `direction` is "ingress" | "egress".
   buildPredicate = { zone, family, direction }:
@@ -31,8 +33,8 @@ let
         };
       };
 
-      v4Allowed = lib.elem family [ "ip" "inet" "netdev" "bridge" ];
-      v6Allowed = lib.elem family [ "ip6" "inet" "netdev" "bridge" ];
+      v4Allowed = lib.elem family nftFamily.v4Families;
+      v6Allowed = lib.elem family nftFamily.v6Families;
 
       v4Match = lib.optional (zone.addresses.ipv4 != [ ] && v4Allowed) {
         match = {

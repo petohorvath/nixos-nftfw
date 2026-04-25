@@ -15,9 +15,7 @@ let
 
   # Drop fields the kind doesn't expose: to (destination is rewritten),
   # and the three verdict fields (verdict is implicitly the dnat).
-  baseFields = lib.filterAttrs
-    (n: _: !(builtins.elem n [ "to" "verdict" "jumpTo" "gotoTo" ]))
-    common.ruleCoreFields;
+  baseFields = common.ruleCoreFieldsExcept [ "to" "verdict" "jumpTo" "gotoTo" ];
 
   dnatRuleSubmodule = { name, ... }: {
     options = baseFields // {

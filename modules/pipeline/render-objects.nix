@@ -9,12 +9,14 @@
 { lib, nftlib, collected, irTables }:
 
 let
+  family = import ../../lib/family.nix { inherit lib; };
+
   # For ipv4_addr/ipv6_addr typed sets, the families it can live in.
   setFamilyAllowed = setType: tableFamily:
     if setType == "ipv4_addr"
-    then lib.elem tableFamily [ "ip" "inet" "netdev" "bridge" ]
+    then lib.elem tableFamily family.v4Families
     else if setType == "ipv6_addr"
-    then lib.elem tableFamily [ "ip6" "inet" "netdev" "bridge" ]
+    then lib.elem tableFamily family.v6Families
     else true;   # other set types are family-neutral
 
   # Resolve "auto-emit" vs explicit `tables = [ ... ]` list.

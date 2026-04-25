@@ -13,9 +13,7 @@
 let
   common = import ../rules-common.nix { inherit lib libnet; };
 
-  baseFields = lib.filterAttrs
-    (n: _: !(builtins.elem n [ "verdict" "jumpTo" "gotoTo" ]))
-    common.ruleCoreFields;
+  baseFields = common.ruleCoreFieldsExcept [ "verdict" "jumpTo" "gotoTo" ];
 
   snatRuleSubmodule = { name, ... }: {
     options = baseFields // {

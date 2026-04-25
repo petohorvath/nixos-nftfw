@@ -12,12 +12,14 @@
 { lib, collected }:
 
 let
+  ruleKinds = (import ../../lib/rule-kinds.nix).kinds;
+
   hasAnyRules =
     let
       kindRulesCount = kind:
         lib.length (lib.attrNames (collected.rules.${kind} or { }));
       total = lib.foldl' (acc: kind: acc + kindRulesCount kind) 0
-        [ "filter" "icmp" "mangle" "dnat" "snat" "redirect" ];
+        ruleKinds;
     in
       total > 0;
 

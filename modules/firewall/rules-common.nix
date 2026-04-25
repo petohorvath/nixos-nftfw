@@ -18,6 +18,10 @@
 */
 { lib, libnet }:
 
+let
+  objectsCommon = import ../objects/_common.nix { inherit lib; };
+in
+
 rec {
   matchSubmodule = { ... }: {
     options = {
@@ -213,14 +217,7 @@ rec {
       apply = v: if builtins.isString v then [ v ] else v;
       description = "Destination zone(s) or node(s); bare string is coerced to a singleton list.";
     };
-    tables = lib.mkOption {
-      type = lib.types.nullOr (lib.types.listOf lib.types.str);
-      default = null;
-      description = ''
-        Emission scope. null = auto-emit to every compatible table;
-        list = explicit restriction to named tables.
-      '';
-    };
+    inherit (objectsCommon.commonFields) tables;
   };
 
   coreFields = {
@@ -248,4 +245,9 @@ rec {
 
   ruleCoreFields = coreFields // dispatchFields;
   ruleFragmentFields = coreFields;
+
+  # Helper: ruleCoreFields minus the named fields.
+  # Example: ruleCoreFieldsExcept [ "to" "verdict" "jumpTo" "gotoTo" ]
+  ruleCoreFieldsExcept = excludes:
+    lib.filterAttrs (n: _: !(builtins.elem n excludes)) ruleCoreFields;
 }
