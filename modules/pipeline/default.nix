@@ -11,11 +11,13 @@ let
   irZones = import ./ir-zones.nix { inherit lib nftlib collected; };
   irTables = import ./ir-tables.nix { inherit lib collected; };
   irRules = import ./ir-rules.nix { inherit lib collected irZones irTables; };
+  irDispatch = import ./ir-dispatch.nix { inherit lib irZones irRules; };
 in {
   config.networking.nftfw._internal.ir = lib.mkIf cfg.enable {
     inherit collected validated;
     zones = irZones;
     tables = irTables;
     rules = irRules;
+    dispatch = irDispatch;
   };
 }
