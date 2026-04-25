@@ -20,6 +20,10 @@ let
             - "node-name:port"     — resolves to nodes.<name>.address.* at render time
             - "192.0.2.1:8080"     — literal endpoint
             - ":8080"              — port-only (preserves destination address)
+
+          Validation against libnet.types.endpoint is deferred until
+          node-name resolution lands in the renderer; today the field
+          is `str` to accept the bare-name forms.
         '';
       };
     };

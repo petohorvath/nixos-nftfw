@@ -55,6 +55,7 @@
           assertion-zone-bad-ipv6 = mkTest ./tests/assertions/zone-bad-ipv6.nix;
           assertion-node-bad-address = mkTest ./tests/assertions/node-bad-address.nix;
           assertion-rule-bad-port = mkTest ./tests/assertions/rule-bad-port.nix;
+          assertion-redirect-bad-port = mkTest ./tests/assertions/redirect-bad-port.nix;
           assertion-rule-bad-address = mkTest ./tests/assertions/rule-bad-address.nix;
           ir-zones-basic = mkTest ./tests/ir/zones-basic.nix;
           ir-table-lazy-main = mkTest ./tests/ir/table-lazy-main.nix;

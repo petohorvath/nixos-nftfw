@@ -12,7 +12,7 @@ let
   redirectRuleSubmodule = { name, ... }: {
     options = baseFields // {
       redirectTo = lib.mkOption {
-        type = lib.types.int;
+        type = libnet.types.port;
         description = "Local port to redirect matching traffic to (transparent proxy).";
       };
     };

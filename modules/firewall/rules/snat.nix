@@ -20,6 +20,10 @@ let
             - "203.0.113.1:8080"
             - ":12000"  (port-only)
             - "[fd00::1]:80"
+
+          Validation against libnet.types.endpoint is deferred until
+          node-name resolution lands in the renderer; today the field
+          is `str` to accept the bare-name forms.
         '';
       };
     };
