@@ -61,6 +61,7 @@
           eval-helper-rpfilter = mkTest ./tests/eval/helper-rpfilter.nix;
           eval-helper-flow-offload = mkTest ./tests/eval/helper-flow-offload.nix;
           eval-helper-ip-forwarding = mkTest ./tests/eval/helper-ip-forwarding.nix;
+          eval-helper-defaults = mkTest ./tests/eval/helper-defaults.nix;
           integration-smoke = mkTest ./tests/integration/smoke.nix;
         });
     };
