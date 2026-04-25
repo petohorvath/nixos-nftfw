@@ -5,7 +5,7 @@
 # port if `services.openssh.enable` is true.
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
   cfg = config.networking.nftfw;
@@ -47,7 +47,7 @@ in {
       '';
     };
     keepAlivePorts = lib.mkOption {
-      type = lib.types.listOf lib.types.int;
+      type = lib.types.listOf libnet.types.port;
       default = sshPorts;
       defaultText = lib.literalExpression ''
         if config.services.openssh.enable
