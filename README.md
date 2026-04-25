@@ -35,7 +35,7 @@ and tested:
 
 ```nix
 {
-  inputs.nixos-nftfw.url = "github:petohorvath/nixos-nftables-firewall";
+  inputs.nixos-nftfw.url = "github:petohorvath/nixos-nftfw";
 
   outputs = { self, nixpkgs, nixos-nftfw, ... }: {
     nixosConfigurations.example = nixpkgs.lib.nixosSystem {
