@@ -47,6 +47,12 @@
       description = "Extra nftables ruleset text.";
     };
 
+    stopRuleset = lib.mkOption {
+      type = lib.types.lines;
+      default = "";
+      description = "nftables ruleset loaded by nftables.service on stop.";
+    };
+
     tables = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule (
         { name, ... }: {

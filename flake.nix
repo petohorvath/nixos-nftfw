@@ -55,6 +55,7 @@
           ir-dispatch-basic = mkTest ./tests/ir/dispatch-basic.nix;
           render-filter-basic = mkTest ./tests/render/filter-basic.nix;
           eval-helper-loopback = mkTest ./tests/eval/helper-loopback.nix;
+          eval-helper-stop-ruleset = mkTest ./tests/eval/helper-stop-ruleset.nix;
           integration-smoke = mkTest ./tests/integration/smoke.nix;
         });
     };
