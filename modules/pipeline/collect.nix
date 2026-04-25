@@ -11,8 +11,7 @@
 let
   # Materialize each node as a synthetic child zone. Address fields
   # carry the host bits at /32 or /128 so dispatch can match them
-  # directly. The `_isNode` and `_nodeName` markers let downstream
-  # stages recognize nodes vs. user-declared zones.
+  # directly.
   nodeZone = name: node: {
     parent = node.zone;
     interfaces = [ ];
@@ -24,8 +23,6 @@ let
     ingressExpression = null;
     egressExpression = null;
     comment = node.comment;
-    _isNode = true;
-    _nodeName = name;
   };
 
   nodesAsZones =

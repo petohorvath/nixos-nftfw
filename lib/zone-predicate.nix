@@ -7,7 +7,7 @@
   an OR of (interface match) ∪ (family-applicable saddr/daddr match).
 
   The output `_matches` is a list of nftypes match expressions. The
-  rendering layer (Tasks 21-22) will combine them with OR semantics.
+  rendering layer will combine them with OR semantics.
   Returns null if the zone has no membership in this family/direction.
 */
 { lib, nftlib }:

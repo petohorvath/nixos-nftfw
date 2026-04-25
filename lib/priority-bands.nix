@@ -1,8 +1,8 @@
 /*
   Priority band constants for kind-typed rules.
 
-  Used by the dispatch generator (Task 21) and by helper modules
-  (Tasks 24-25) to slot rules into the appropriate position within
+  Used by the dispatch generator and by helper modules
+  to slot rules into the appropriate position within
   a per-zone dispatch chain.
 */
 {

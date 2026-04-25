@@ -8,9 +8,6 @@ rec {
   # Every nftables family.
   all = [ "ip" "ip6" "inet" "arp" "bridge" "netdev" ];
 
-  # Layer-3 families (where ip/ip6 saddr/daddr matches make sense).
-  l3 = [ "ip" "ip6" "inet" "netdev" "bridge" ];
-
   # Compute the families a zone applies to, given its declaration.
   # Rules:
   #   - ingressExpression set → user-asserted; applies to every family

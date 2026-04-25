@@ -8,7 +8,7 @@
       contains the subchain's zone)
 
   Output is keyed by "<tableName>::<chain>" for stable lookup. The
-  rendering layer (Tasks 22-23) will translate this IR into nftypes
+  rendering layer will translate this IR into nftypes
   chains and base-chain dispatches.
 */
 { lib, irZones, irRules }:

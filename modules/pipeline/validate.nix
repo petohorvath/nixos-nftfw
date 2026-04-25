@@ -59,5 +59,5 @@ let
   formatted = refs.formatErrors "nftfw: validation failed" allErrors;
 in
   if formatted == null
-  then { ok = true; errors = [ ]; }
+  then null
   else throw formatted

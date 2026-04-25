@@ -3,7 +3,7 @@
   rule fragments.
 
   This file declares NO options of its own — it returns an attrset of
-  field groups that rule-kind submodules (Tasks 13-16) compose into their
+  field groups that rule-kind submodules compose into their
   own option sets.
 
   Three composition aliases:
