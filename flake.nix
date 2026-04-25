@@ -57,6 +57,7 @@
           eval-helper-loopback = mkTest ./tests/eval/helper-loopback.nix;
           eval-helper-stop-ruleset = mkTest ./tests/eval/helper-stop-ruleset.nix;
           eval-helper-kernel-hardening = mkTest ./tests/eval/helper-kernel-hardening.nix;
+          eval-helper-conntrack-baseline = mkTest ./tests/eval/helper-conntrack-baseline.nix;
           integration-smoke = mkTest ./tests/integration/smoke.nix;
         });
     };
