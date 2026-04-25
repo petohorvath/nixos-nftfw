@@ -1,0 +1,87 @@
+name: checks
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  fast-checks:
+    name: Fast checks (eval / IR / render / assertion / integration)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+
+      # Optional: enable a Cachix binary cache to skip rebuilding
+      # unchanged derivations across runs.
+      #   1. Create a cache at https://app.cachix.org/
+      #   2. Add CACHIX_AUTH_TOKEN as a repository secret
+      #   3. Set `name:` below to your cache name and uncomment.
+      #
+      # - name: Set up Cachix
+      #   uses: cachix/cachix-action@v15
+      #   with:
+      #     name: nixos-nftfw
+      #     authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: Build all non-VM checks
+        run: |
+          set -euo pipefail
+          checks=$(nix flake show --json --no-write-lock-file 2>/dev/null \
+            | jq -r '.checks["x86_64-linux"] | keys[] | select(startswith("vm-") | not)')
+          if [ -z "$checks" ]; then
+            echo "No checks found under .#checks.x86_64-linux" >&2
+            exit 1
+          fi
+          for check in $checks; do
+            echo "::group::$check"
+            nix build ".#checks.x86_64-linux.$check" \
+              --print-build-logs \
+              --no-write-lock-file
+            echo "::endgroup::"
+          done
+
+  vm-tests:
+    name: VM tests (single-host)
+    runs-on: ubuntu-latest
+    needs: fast-checks
+    # Skip VM tests on draft PRs to save runner minutes; still run on
+    # all pushes (e.g. main) and on ready-for-review PRs.
+    if: github.event_name == 'push' || github.event.pull_request.draft != true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify KVM is available on the runner
+        run: |
+          ls -la /dev/kvm
+          test -c /dev/kvm
+
+      - name: Set up Nix with KVM system feature
+        uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            system-features = nixos-test benchmark big-parallel kvm
+
+      # - name: Set up Cachix
+      #   uses: cachix/cachix-action@v15
+      #   with:
+      #     name: nixos-nftfw
+      #     authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: Build vm-single-host
+        run: |
+          nix build .#checks.x86_64-linux.vm-single-host \
+            --print-build-logs \
+            --no-write-lock-file
