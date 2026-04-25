@@ -8,12 +8,12 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
 
-  tunnelSubmodule = { name, ... }: {
+  tunnelSubmodule = { ... }: {
     options = {
       id = lib.mkOption {
         type = lib.types.int;

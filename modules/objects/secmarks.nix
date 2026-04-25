@@ -7,12 +7,12 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
 
-  secmarkSubmodule = { name, ... }: {
+  secmarkSubmodule = { ... }: {
     options = {
       context = lib.mkOption {
         type = lib.types.str;

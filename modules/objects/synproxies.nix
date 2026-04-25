@@ -7,12 +7,12 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
 
-  synproxySubmodule = { name, ... }: {
+  synproxySubmodule = { ... }: {
     options = {
       mss = lib.mkOption {
         type = lib.types.int;

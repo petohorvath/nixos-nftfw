@@ -8,12 +8,12 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
 
-  helperSubmodule = { name, ... }: {
+  helperSubmodule = { ... }: {
     options = {
       type = lib.mkOption {
         type = lib.types.str;
@@ -32,7 +32,7 @@ let
     } // commonFields;
   };
 
-  timeoutSubmodule = { name, ... }: {
+  timeoutSubmodule = { ... }: {
     options = {
       protocol = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
@@ -52,7 +52,7 @@ let
     } // commonFields;
   };
 
-  expectationSubmodule = { name, ... }: {
+  expectationSubmodule = { ... }: {
     options = {
       l3proto = lib.mkOption {
         type = lib.types.nullOr lib.types.str;

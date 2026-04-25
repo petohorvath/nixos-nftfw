@@ -8,7 +8,7 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
   common = import ../rules-common.nix { inherit lib libnet; };
@@ -17,7 +17,7 @@ let
   # and the three verdict fields (verdict is implicitly the dnat).
   baseFields = common.ruleCoreFieldsExcept [ "to" "verdict" "jumpTo" "gotoTo" ];
 
-  dnatRuleSubmodule = { name, ... }: {
+  dnatRuleSubmodule = { ... }: {
     options = baseFields // {
       forwardTo = lib.mkOption {
         type = lib.types.str;

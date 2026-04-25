@@ -8,7 +8,7 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 {
   options.networking.nftfw.objects.ruleset = lib.mkOption {

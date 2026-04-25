@@ -8,14 +8,14 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
   common = import ../rules-common.nix { inherit lib libnet; };
 
   baseFields = common.ruleCoreFieldsExcept [ "verdict" "jumpTo" "gotoTo" ];
 
-  snatRuleSubmodule = { name, ... }: {
+  snatRuleSubmodule = { ... }: {
     options = baseFields // {
       translateTo = lib.mkOption {
         type = lib.types.nullOr lib.types.str;

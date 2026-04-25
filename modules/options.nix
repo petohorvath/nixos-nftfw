@@ -9,7 +9,7 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 {
   options.networking.nftfw = {

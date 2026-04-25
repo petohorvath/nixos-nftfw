@@ -7,12 +7,12 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
   common = import ../rules-common.nix { inherit lib libnet; };
 
-  icmpRuleSubmodule = { name, ... }: {
+  icmpRuleSubmodule = { ... }: {
     options = common.ruleCoreFields // {
       icmp.v4Types = lib.mkOption {
         type = lib.types.listOf lib.types.str;

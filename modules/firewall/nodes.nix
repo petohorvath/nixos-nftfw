@@ -8,10 +8,10 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
-  nodeSubmodule = { name, ... }: {
+  nodeSubmodule = { ... }: {
     options = {
       zone = lib.mkOption {
         type = lib.types.str;

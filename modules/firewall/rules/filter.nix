@@ -8,12 +8,12 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
   common = import ../rules-common.nix { inherit lib libnet; };
 
-  filterRuleSubmodule = { name, ... }: {
+  filterRuleSubmodule = { ... }: {
     options = common.ruleCoreFields;
     config = {
       verdict = lib.mkDefault "accept";

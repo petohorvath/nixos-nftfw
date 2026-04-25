@@ -8,12 +8,12 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
 
-  counterSubmodule = { name, ... }: {
+  counterSubmodule = { ... }: {
     options = {
       packets = lib.mkOption {
         type = lib.types.nullOr lib.types.int;
@@ -28,7 +28,7 @@ let
     } // commonFields;
   };
 
-  quotaSubmodule = { name, ... }: {
+  quotaSubmodule = { ... }: {
     options = {
       bytes = lib.mkOption {
         type = lib.types.int;
@@ -47,7 +47,7 @@ let
     } // commonFields;
   };
 
-  limitSubmodule = { name, ... }: {
+  limitSubmodule = { ... }: {
     options = {
       rate = lib.mkOption {
         type = lib.types.int;

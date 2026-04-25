@@ -7,14 +7,14 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
   common = import ../rules-common.nix { inherit lib libnet; };
 
   baseFields = common.ruleCoreFieldsExcept [ "to" "verdict" "jumpTo" "gotoTo" ];
 
-  redirectRuleSubmodule = { name, ... }: {
+  redirectRuleSubmodule = { ... }: {
     options = baseFields // {
       redirectTo = lib.mkOption {
         type = libnet.types.port;

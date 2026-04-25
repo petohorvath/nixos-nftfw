@@ -8,7 +8,7 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
   # base chain submodule factory: takes an attrset of extra field options
@@ -44,7 +44,7 @@ let
     };
   };
 
-  tableSubmodule = { name, ... }: {
+  tableSubmodule = { ... }: {
     options = {
       family = lib.mkOption {
         type = lib.types.enum [ "ip" "ip6" "inet" "arp" "bridge" "netdev" ];

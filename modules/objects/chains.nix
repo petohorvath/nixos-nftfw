@@ -8,10 +8,10 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
-  chainSubmodule = { name, ... }: {
+  chainSubmodule = { ... }: {
     options = {
       table = lib.mkOption {
         type = lib.types.str;

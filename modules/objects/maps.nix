@@ -7,12 +7,12 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
 
-  mapSubmodule = { name, ... }: {
+  mapSubmodule = { ... }: {
     options = {
       type = lib.mkOption {
         type = lib.types.either lib.types.str (lib.types.listOf lib.types.str);

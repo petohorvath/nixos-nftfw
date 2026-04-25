@@ -8,12 +8,12 @@
 */
 { lib }:
 
-{ config, ... }:
+{ ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
 
-  flowtableSubmodule = { name, ... }: {
+  flowtableSubmodule = { ... }: {
     options = {
       hook = lib.mkOption {
         type = lib.types.enum [ "ingress" ];

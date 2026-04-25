@@ -9,10 +9,10 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
-  zoneSubmodule = { name, ... }: {
+  zoneSubmodule = { ... }: {
     options = {
       parent = lib.mkOption {
         type = lib.types.nullOr lib.types.str;

@@ -7,7 +7,7 @@
 */
 { lib }:
 
-{ config, libnet, ... }:
+{ libnet, ... }:
 
 let
   common = import ../rules-common.nix { inherit lib libnet; };
@@ -15,7 +15,7 @@ let
   # Drop `to` from ruleCoreFields (mangle prerouting has no destination zone)
   baseFields = common.ruleCoreFieldsExcept [ "to" ];
 
-  mangleRuleSubmodule = { name, ... }: {
+  mangleRuleSubmodule = { ... }: {
     options = baseFields // {
       setMark = lib.mkOption {
         type = lib.types.nullOr lib.types.int;
