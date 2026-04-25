@@ -22,17 +22,11 @@ jobs:
             experimental-features = nix-command flakes
             accept-flake-config = true
 
-      # Optional: enable a Cachix binary cache to skip rebuilding
-      # unchanged derivations across runs.
-      #   1. Create a cache at https://app.cachix.org/
-      #   2. Add CACHIX_AUTH_TOKEN as a repository secret
-      #   3. Set `name:` below to your cache name and uncomment.
-      #
-      # - name: Set up Cachix
-      #   uses: cachix/cachix-action@v15
-      #   with:
-      #     name: nixos-nftfw
-      #     authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: github-actions
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: Build all non-VM checks
         run: |
@@ -74,11 +68,11 @@ jobs:
             accept-flake-config = true
             system-features = nixos-test benchmark big-parallel kvm
 
-      # - name: Set up Cachix
-      #   uses: cachix/cachix-action@v15
-      #   with:
-      #     name: nixos-nftfw
-      #     authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: github-actions
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: Build vm-single-host
         run: |
