@@ -44,6 +44,7 @@
           eval-tables = mkTest ./tests/eval/tables.nix;
           eval-chains = mkTest ./tests/eval/chains.nix;
           eval-rules-filter = mkTest ./tests/eval/rules-filter.nix;
+          eval-rules-icmp = mkTest ./tests/eval/rules-icmp.nix;
         });
     };
 }
