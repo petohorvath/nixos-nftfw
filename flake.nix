@@ -51,6 +51,7 @@
           assertion-cyclic-parent = mkTest ./tests/assertions/cyclic-parent.nix;
           ir-zones-basic = mkTest ./tests/ir/zones-basic.nix;
           ir-table-lazy-main = mkTest ./tests/ir/table-lazy-main.nix;
+          ir-rule-resolution = mkTest ./tests/ir/rule-resolution.nix;
         });
     };
 }

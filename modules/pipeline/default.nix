@@ -10,10 +10,12 @@ let
   validated = import ./validate.nix { inherit lib collected; };
   irZones = import ./ir-zones.nix { inherit lib nftlib collected; };
   irTables = import ./ir-tables.nix { inherit lib collected; };
+  irRules = import ./ir-rules.nix { inherit lib collected irZones irTables; };
 in {
   config.networking.nftfw._internal.ir = lib.mkIf cfg.enable {
     inherit collected validated;
     zones = irZones;
     tables = irTables;
+    rules = irRules;
   };
 }
