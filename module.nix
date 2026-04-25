@@ -36,6 +36,7 @@
     (import ./modules/helpers/conntrack-baseline.nix { inherit lib; })
     (import ./modules/helpers/rpfilter.nix { inherit lib; })
     (import ./modules/helpers/flow-offload.nix { inherit lib; })
+    (import ./modules/helpers/ip-forwarding.nix { inherit lib; })
 
     # Pipeline
     (import ./modules/pipeline { inherit lib nftlib; })

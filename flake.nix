@@ -60,6 +60,7 @@
           eval-helper-conntrack-baseline = mkTest ./tests/eval/helper-conntrack-baseline.nix;
           eval-helper-rpfilter = mkTest ./tests/eval/helper-rpfilter.nix;
           eval-helper-flow-offload = mkTest ./tests/eval/helper-flow-offload.nix;
+          eval-helper-ip-forwarding = mkTest ./tests/eval/helper-ip-forwarding.nix;
           integration-smoke = mkTest ./tests/integration/smoke.nix;
         });
     };
