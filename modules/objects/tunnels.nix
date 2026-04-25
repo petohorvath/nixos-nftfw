@@ -1,6 +1,6 @@
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
   inherit (import ./_common.nix { inherit lib; }) commonFields;
@@ -12,32 +12,32 @@ let
         description = "Tunnel id (VXLAN VNI, ERSPAN id, GENEVE VNI).";
       };
       "src-ipv4" = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+        type = lib.types.nullOr libnet.types.ipv4;
         default = null;
         description = "IPv4 source endpoint for the tunnel.";
       };
       "dst-ipv4" = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+        type = lib.types.nullOr libnet.types.ipv4;
         default = null;
         description = "IPv4 destination endpoint.";
       };
       "src-ipv6" = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+        type = lib.types.nullOr libnet.types.ipv6;
         default = null;
         description = "IPv6 source endpoint.";
       };
       "dst-ipv6" = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+        type = lib.types.nullOr libnet.types.ipv6;
         default = null;
         description = "IPv6 destination endpoint.";
       };
       sport = lib.mkOption {
-        type = lib.types.nullOr lib.types.int;
+        type = lib.types.nullOr libnet.types.port;
         default = null;
         description = "Encapsulating transport source port.";
       };
       dport = lib.mkOption {
-        type = lib.types.nullOr lib.types.int;
+        type = lib.types.nullOr libnet.types.port;
         default = null;
         description = "Encapsulating transport destination port.";
       };
