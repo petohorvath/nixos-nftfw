@@ -19,7 +19,7 @@
       forEach = f: nixpkgs.lib.genAttrs systems (s: f s);
     in {
       nixosModules.default = import ./module.nix {
-        inherit (nix-libnet) lib;
+        lib = nixpkgs.lib;
         nftlib = nix-nftypes.lib;
       };
       nixosModules.nftfw = self.nixosModules.default;
@@ -31,6 +31,7 @@
           libnet = nix-libnet.lib;
           nftlib = nix-nftypes.lib;
           mkTest = path: import path { inherit pkgs libnet nftlib; };
+          mkVmTest = path: import path { inherit pkgs libnet nftlib self; };
         in {
           eval-enable = mkTest ./tests/eval/enable.nix;
           eval-namespaces = mkTest ./tests/eval/namespaces.nix;
@@ -63,6 +64,7 @@
           eval-helper-ip-forwarding = mkTest ./tests/eval/helper-ip-forwarding.nix;
           eval-helper-defaults = mkTest ./tests/eval/helper-defaults.nix;
           integration-smoke = mkTest ./tests/integration/smoke.nix;
+          vm-single-host = mkVmTest ./tests/vm/single-host.nix;
         });
     };
 }

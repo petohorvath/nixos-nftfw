@@ -24,71 +24,23 @@
     };
   };
 
-  # Declare the NixOS nftables options that emit.nix writes into, so the
-  # module can be evaluated standalone (without the full NixOS module set).
-  # When composed with NixOS these declarations are merged with the real
-  # options from nixos/modules/services/networking/nftables.nix.
-  options.networking.nftables = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Whether to enable nftables.";
-    };
-
-    flushRuleset = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Flush the entire ruleset on each reload.";
-    };
-
-    ruleset = lib.mkOption {
-      type = lib.types.lines;
-      default = "";
-      description = "Extra nftables ruleset text.";
-    };
-
-    stopRuleset = lib.mkOption {
-      type = lib.types.lines;
-      default = "";
-      description = "nftables ruleset loaded by nftables.service on stop.";
-    };
-
-    tables = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule (
-        { name, ... }: {
-          options = {
-            name = lib.mkOption {
-              type = lib.types.str;
-              default = name;
-              description = "Table name.";
-            };
-            family = lib.mkOption {
-              type = lib.types.enum [ "ip" "ip6" "inet" "arp" "bridge" "netdev" ];
-              description = "Table family.";
-            };
-            content = lib.mkOption {
-              type = lib.types.lines;
-              description = "The table content (full nft commands).";
-            };
-          };
-        }
-      ));
-      default = { };
-      description = "Tables to emit.";
-    };
-  };
-
-  options.networking.firewall = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Whether to enable the simple stateful NixOS firewall.";
-    };
-  };
-
-  options.boot.kernel.sysctl = lib.mkOption {
-    type = lib.types.attrsOf lib.types.unspecified;
-    default = { };
-    description = "Kernel sysctl parameters to set at boot. Stub for standalone eval.";
+  # NixOS-standard options (networking.nftables.enable, .flushRuleset, .ruleset,
+  # .tables, networking.firewall.enable, boot.kernel.sysctl) are NOT declared here;
+  # they are provided by the full NixOS module system in production. For standalone
+  # eval the harness.nix stubs module supplies them — see tests/harness.nix.
+  #
+  # networking.nftables.stopRuleset is a module-private extension that is NOT part
+  # of the upstream NixOS nftables module. We declare it here so both standalone
+  # eval and NixOS context can use it; NixOS's nftables module ignores unknown
+  # options unless something wires it to the systemd unit's ExecStop.
+  options.networking.nftables.stopRuleset = lib.mkOption {
+    type = lib.types.lines;
+    default = "";
+    description = ''
+      Minimal-safe nftables ruleset to load when the nftables service stops.
+      Wired to nftables.service ExecStop by the stop-ruleset helper.
+      This option is a nftfw extension; the upstream NixOS nftables module
+      does not declare or use it.
+    '';
   };
 }

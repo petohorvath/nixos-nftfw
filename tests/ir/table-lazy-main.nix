@@ -41,8 +41,12 @@ in
       expected = false;
     };
     testNoSynthesisWhenNoRules = {
+      # In cooperative mode (authoritative = false) the helpers that
+      # auto-inject rules in authoritative mode are disabled, so a
+      # bare enable = true with no user rules leaves irTables empty.
       expr = (irTables ({ ... }: {
         networking.nftfw.enable = true;
+        networking.nftfw.authoritative = false;
       })) == { };
       expected = true;
     };
