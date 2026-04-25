@@ -59,6 +59,7 @@
           eval-helper-kernel-hardening = mkTest ./tests/eval/helper-kernel-hardening.nix;
           eval-helper-conntrack-baseline = mkTest ./tests/eval/helper-conntrack-baseline.nix;
           eval-helper-rpfilter = mkTest ./tests/eval/helper-rpfilter.nix;
+          eval-helper-flow-offload = mkTest ./tests/eval/helper-flow-offload.nix;
           integration-smoke = mkTest ./tests/integration/smoke.nix;
         });
     };
