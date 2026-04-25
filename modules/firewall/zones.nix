@@ -1,6 +1,6 @@
 { lib }:
 
-{ config, ... }:
+{ config, libnet, ... }:
 
 let
   zoneSubmodule = { name, ... }: {
@@ -16,12 +16,12 @@ let
         description = "iifname/oifname members.";
       };
       addresses.ipv4 = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+        type = lib.types.listOf libnet.types.ipv4Cidr;
         default = [ ];
         description = "IPv4 addresses or CIDR blocks that belong to this zone.";
       };
       addresses.ipv6 = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+        type = lib.types.listOf libnet.types.ipv6Cidr;
         default = [ ];
         description = "IPv6 addresses or CIDR blocks that belong to this zone.";
       };
