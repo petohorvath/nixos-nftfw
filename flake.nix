@@ -21,6 +21,7 @@
       nixosModules.default = import ./module.nix {
         lib = nixpkgs.lib;
         nftlib = nix-nftypes.lib;
+        libnet = nix-libnet.lib;
       };
       nixosModules.nftfw = self.nixosModules.default;
 

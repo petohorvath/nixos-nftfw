@@ -72,10 +72,9 @@ let
   evalConfig = userConfig: (lib.evalModules {
     modules = [
       nixosStubs
-      (import ../module.nix { inherit lib; inherit nftlib; })
+      (import ../module.nix { inherit lib nftlib libnet; })
       userConfig
     ];
-    specialArgs = { inherit libnet nftlib; };
   }).config;
 
   runTests = suite:

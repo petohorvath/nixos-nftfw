@@ -1,8 +1,13 @@
-{ lib, nftlib }:
+{ lib, nftlib, libnet }:
 
 { config, pkgs, ... }:
 
-{
+let
+  libnetTyped = libnet.withLib lib;
+in {
+  _module.args.libnet = libnetTyped;
+  _module.args.nftlib = nftlib;
+
   imports = [
     (import ./modules/options.nix { inherit lib; })
 
